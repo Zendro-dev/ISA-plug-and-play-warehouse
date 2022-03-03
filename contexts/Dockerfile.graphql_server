@@ -3,8 +3,16 @@ FROM node:14-stretch-slim
 # Create app directory
 WORKDIR /usr/graphql-server
 
+# Source code
+COPY ./graphql-server /usr/graphql-server
+
+# Data storages connection config
+COPY ./config/data_models_storage_config.json /usr/graphql-server/config/data_models_storage_config.json
+
 # Install and setup dependencies
 RUN apt-get update && apt-get install -y autoconf libtool make python3 g++ jq \
-	&& ln -s /usr/bin/python3 /usr/bin/python
+	&& ln -s /usr/bin/python3 /usr/bin/python \
+  && chmod u+x ./migrateDbAndStartServer.sh \
+  && npm install --prefix .
 
 EXPOSE 3000

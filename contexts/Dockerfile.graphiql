@@ -3,4 +3,13 @@ FROM node:14-stretch-slim
 # Create app directory
 WORKDIR /usr/graphiql-auth
 
+# Source code
+COPY ./graphiql-auth /usr/graphiql-auth
+
+# Install dependencies and compile the components
+RUN rm -rf .next && \
+  rm -rf out && \
+  yarn install && \
+  yarn build
+
 EXPOSE 7000

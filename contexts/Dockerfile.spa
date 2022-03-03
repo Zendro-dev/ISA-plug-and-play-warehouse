@@ -3,4 +3,18 @@ FROM node:14-stretch-slim
 # Create app directory
 WORKDIR /usr/single-page-app
 
+# Source code
+COPY ./single-page-app /usr/single-page-app
+
+# Zendro Data Model Definitions
+COPY ./data_model_definitions /usr/data_model_definitions
+
+# Install dependencies and compile the components
+RUN rm -rf .next && \
+  rm -rf out && \
+  yarn install && \
+  yarn build && \
+  cat .env.development && \
+  cat .env.production
+
 EXPOSE 8080

@@ -55,8 +55,8 @@ services:
       - zendro_postgres
       - zendro_keycloak 
     build:
-      context: ./contexts
-      dockerfile: Dockerfile.graphql_server
+      context: .
+      dockerfile: ./contexts/Dockerfile.graphql_server
     environment:
       PORT: "3000"
       JQ_PATH: /usr/bin/jq
@@ -66,9 +66,9 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./graphql-server:/usr/graphql-server
+      #- ./graphql-server:/usr/graphql-server
       # override default default config with Starterpack config
-      - ./config/data_models_storage_config.json:/usr/graphql-server/config/data_models_storage_config.json
+      #- ./config/data_models_storage_config.json:/usr/graphql-server/config/data_models_storage_config.json
       - ./graphiql-auth/.env.development:/usr/graphiql-auth/.env.development
       - ./graphiql-auth/.env.production:/usr/graphiql-auth/.env.production
       - ./single-page-app/.env.development:/usr/single-page-app/.env.development
@@ -82,8 +82,8 @@ services:
       - /bin/sh
       - -c
       - |
-        npm install
-        chmod u+x ./migrateDbAndStartServer.sh
+        # npm install
+        # chmod u+x ./migrateDbAndStartServer.sh
         ./migrateDbAndStartServer.sh
         
   zendro_spa:
@@ -94,27 +94,27 @@ services:
       - zendro_postgres
       - zendro_graphql_server
     build:
-      context: ./contexts
-      dockerfile: Dockerfile.spa
+      context: .
+      dockerfile: ./contexts/Dockerfile.spa
     # Using ports in this way is a security concern. Please consider using e.g. a reverseproxy
     ports:
       - 8080:8080
     environment:
       # Set your production environment variables here or in ./single-page-app/.env.production
       PORT: "8080"
-    volumes:
-      - ./single-page-app:/usr/single-page-app
-      - ./data_model_definitions:/usr/data_model_definitions
+    # volumes:
+    #   - ./single-page-app:/usr/single-page-app
+    #   - ./data_model_definitions:/usr/data_model_definitions
     # Install dependencies and start single-page-app-server in development
     # mode.
     command:
       - /bin/sh
       - -c
       - |
-        rm -rf .next
-        rm -rf out
-        yarn install
-        yarn build
+        # rm -rf .next
+        # rm -rf out
+        # yarn install
+        # yarn build
         yarn start
     # command:
     #   - /bin/sh
@@ -133,16 +133,16 @@ services:
       - zendro_postgres
       - zendro_graphql_server
     build:
-      context: ./contexts
-      dockerfile: Dockerfile.graphiql
+      context: .
+      dockerfile: ./contexts/Dockerfile.graphiql
     # Using ports in this way is a security concern. Please consider using e.g. a reverseproxy
     ports:
       - 7000:7000
     environment:
       # Set your production environment variables here
       PORT: "7000"
-    volumes:
-      - ./graphiql-auth:/usr/graphiql-auth
+    # volumes:
+    #   - ./graphiql-auth:/usr/graphiql-auth
     # Install dependencies and start single-page-app-server in development
     # mode.
     networks:
@@ -151,10 +151,10 @@ services:
       - /bin/sh
       - -c
       - |
-        rm -rf .next
-        rm -rf out
-        yarn install
-        yarn build
+        # rm -rf .next
+        # rm -rf out
+        # yarn install
+        # yarn build
         yarn start
 
   isa_minio:
