@@ -11,8 +11,24 @@ docker-compose -f docker-compose-prod.yml \
     --build zendro_graphql_server
 
 # Run the migration, which sets up keycloak for your system:
+# TODO:
+# - add a --rm to the below run
+# - remove the volume statements from docker-compose-prod.yml
+# - use mount here for all env files
+# - after the command finishes: docker cp ./graphql-server/.env to /usr/graphql-server/.env
 docker-compose -f docker-compose-prod.yml \
-  run zendro_graphql_server node -e 'require("./utils/migration").up()'
+  run --rm zendro_graphql_server \
+  -v ./graphql-server/.env:/usr/graphql-server/.env \
+  -v ./graphiql-auth/.env.development:/usr/graphiql-auth/.env.development \
+  -v ./graphiql-auth/.env.production:/usr/graphiql-auth/.env.production \
+  -v ./single-page-app/.env.development:/usr/single-page-app/.env.development \
+  -v ./single-page-app/.env.production:/usr/single-page-app/.env.production \
+  node -e 'require("./utils/migration").up()'
+
+# The above migration changed the .env file to now contain information about
+# the Keycloak OAuth2 service. We thus need to copy it into the graphql-server
+# image:
+docker cp ./graphql-server/.env zendro_graphql_server:/usr/graphql-server/.env
 
 # Start all Zendro services:
 docker-compose -f docker-compose-prod.yml \

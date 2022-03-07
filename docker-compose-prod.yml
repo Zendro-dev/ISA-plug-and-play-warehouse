@@ -65,14 +65,15 @@ services:
     # Using ports in this way is a security concern. Please consider using e.g. a reverseproxy
     ports:
       - 3000:3000
-    volumes:
+    #volumes:
       #- ./graphql-server:/usr/graphql-server
       # override default default config with Starterpack config
       #- ./config/data_models_storage_config.json:/usr/graphql-server/config/data_models_storage_config.json
-      - ./graphiql-auth/.env.development:/usr/graphiql-auth/.env.development
-      - ./graphiql-auth/.env.production:/usr/graphiql-auth/.env.production
-      - ./single-page-app/.env.development:/usr/single-page-app/.env.development
-      - ./single-page-app/.env.production:/usr/single-page-app/.env.production
+      # - ./graphql-server/.env:/usr/graphql-server/.env
+      # - ./graphiql-auth/.env.development:/usr/graphiql-auth/.env.development
+      # - ./graphiql-auth/.env.production:/usr/graphiql-auth/.env.production
+      # - ./single-page-app/.env.development:/usr/single-page-app/.env.development
+      # - ./single-page-app/.env.production:/usr/single-page-app/.env.production
     # Await POSTGRES role and DB creation, migrate schema, then start web
     # server:
     networks:
