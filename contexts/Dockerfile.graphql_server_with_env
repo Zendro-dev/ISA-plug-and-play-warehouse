@@ -1,0 +1,6 @@
+FROM isa-plug-and-play-warehouse_zendro_graphql_server:latest
+
+# Update the edited .env file after the migration (see ./zendro_up_prod.sh):
+COPY ./graphql-server/.env /usr/graphql-server/.env
+
+EXPOSE 3000
