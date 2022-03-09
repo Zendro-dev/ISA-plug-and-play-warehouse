@@ -54,7 +54,7 @@ docker-compose -f docker-compose-prod.yml down
 
 # Start all Zendro services:
 docker-compose -f docker-compose-prod.yml \
-    up -d --build --force-recreate --remove-orphans
+    up -d --remove-orphans
 
 # Inform the user:
 echo "Access Zendro's GUI at http://localhost:8080"
