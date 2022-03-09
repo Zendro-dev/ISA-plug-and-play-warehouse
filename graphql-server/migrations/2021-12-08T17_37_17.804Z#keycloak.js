@@ -41,32 +41,59 @@ module.exports = {
 
       // write ENV variables
       // graphql-server
+      // fs.appendFileSync(
+      //   path.resolve(__dirname, "../.env"),
+      //   `\nOAUTH2_PUBLIC_KEY="${KEYCLOAK_PUBLIC_KEY}"\nOAUTH2_CLIENT_ID=${KEYCLOAK_GQL_CLIENT}`
+      // );
+
+      // // graphiql-auth
+      // fs.appendFileSync(
+      //   path.resolve(__dirname, "../../graphiql-auth/.env.development"),
+      //   `\nOAUTH2_CLIENT_SECRET=${KEYCLOAK_GIQL_CLIENT_SECRET}\nOAUTH2_CLIENT_ID=${KEYCLOAK_GIQL_CLIENT}`
+      // );
+
+      // fs.appendFileSync(
+      //   path.resolve(__dirname, "../../graphiql-auth/.env.production"),
+      //   `\nOAUTH2_CLIENT_SECRET=${KEYCLOAK_GIQL_CLIENT_SECRET}\nOAUTH2_CLIENT_ID=${KEYCLOAK_GIQL_CLIENT}`
+      // );
+
+      // // single-page-app
+      // fs.appendFileSync(
+      //   path.resolve(__dirname, "../../single-page-app/.env.development"),
+      //   `\nOAUTH2_CLIENT_SECRET=${KEYCLOAK_SPA_CLIENT_SECRET}\nOAUTH2_CLIENT_ID=${KEYCLOAK_SPA_CLIENT}`
+      // );
+
+      // fs.appendFileSync(
+      //   path.resolve(__dirname, "../../single-page-app/.env.production"),
+      //   `\nOAUTH2_CLIENT_SECRET=${KEYCLOAK_SPA_CLIENT_SECRET}\nOAUTH2_CLIENT_ID=${KEYCLOAK_SPA_CLIENT}`
+      // );
       fs.appendFileSync(
-        path.resolve(__dirname, "../.env"),
+        path.resolve(__dirname, "../../env-files/.env.graphql"),
         `\nOAUTH2_PUBLIC_KEY="${KEYCLOAK_PUBLIC_KEY}"\nOAUTH2_CLIENT_ID=${KEYCLOAK_GQL_CLIENT}`
       );
 
       // graphiql-auth
       fs.appendFileSync(
-        path.resolve(__dirname, "../../graphiql-auth/.env.development"),
+        path.resolve(__dirname, "../../env-files/.env.development.graphiql"),
         `\nOAUTH2_CLIENT_SECRET=${KEYCLOAK_GIQL_CLIENT_SECRET}\nOAUTH2_CLIENT_ID=${KEYCLOAK_GIQL_CLIENT}`
       );
 
       fs.appendFileSync(
-        path.resolve(__dirname, "../../graphiql-auth/.env.production"),
+        path.resolve(__dirname, "../../env-files/.env.production.graphiql"),
         `\nOAUTH2_CLIENT_SECRET=${KEYCLOAK_GIQL_CLIENT_SECRET}\nOAUTH2_CLIENT_ID=${KEYCLOAK_GIQL_CLIENT}`
       );
 
       // single-page-app
       fs.appendFileSync(
-        path.resolve(__dirname, "../../single-page-app/.env.development"),
+        path.resolve(__dirname, "../../env-files/.env.development.spa"),
         `\nOAUTH2_CLIENT_SECRET=${KEYCLOAK_SPA_CLIENT_SECRET}\nOAUTH2_CLIENT_ID=${KEYCLOAK_SPA_CLIENT}`
       );
 
       fs.appendFileSync(
-        path.resolve(__dirname, "../../single-page-app/.env.production"),
+        path.resolve(__dirname, "../../env-files/.env.production.spa"),
         `\nOAUTH2_CLIENT_SECRET=${KEYCLOAK_SPA_CLIENT_SECRET}\nOAUTH2_CLIENT_ID=${KEYCLOAK_SPA_CLIENT}`
       );
+
 
       console.log(
         "Successfully added OAuth2 keycloak PUBLIC_KEY, CLIENT_ID and CLIENT_SECRET environment variables."

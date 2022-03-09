@@ -65,6 +65,10 @@ services:
     # Using ports in this way is a security concern. Please consider using e.g. a reverseproxy
     ports:
       - 3000:3000
+    volumes:
+      - env-files:/usr/env-files/
+      - ./graphql-server/zendro_migration_log.json:/usr/graphql-server/zendro_migration_log.json
+      - ./graphql-server/zendro_migration_state.json:/usr/graphql-server/zendro_migration_state.json
     #volumes:
       #- ./graphql-server:/usr/graphql-server
       # override default default config with Starterpack config
@@ -83,6 +87,7 @@ services:
       - /bin/sh
       - -c
       - |
+        cp ../env-files/.env.graphql .env
         # npm install
         # chmod u+x ./migrateDbAndStartServer.sh
         ./migrateDbAndStartServer.sh
@@ -108,10 +113,14 @@ services:
     #   - ./data_model_definitions:/usr/data_model_definitions
     # Install dependencies and start single-page-app-server in development
     # mode.
+    volumes:
+      - env-files:/usr/env-files/
     command:
       - /bin/sh
       - -c
       - |
+        cp ../env-files/.env.development.spa .env.development
+        cp ../env-files/.env.production.spa .env.production
         # rm -rf .next
         # rm -rf out
         # yarn install
@@ -148,10 +157,14 @@ services:
     # mode.
     networks:
       zendro:
+    volumes:
+      - env-files:/usr/env-files/
     command:
       - /bin/sh
       - -c
       - |
+        cp ../env-files/.env.development.graphiql .env.development
+        cp ../env-files/.env.production.graphiql .env.production
         # rm -rf .next
         # rm -rf out
         # yarn install
@@ -195,6 +208,8 @@ volumes:
   zendro_db_data:
   keycloak_pg_data:
   isa_files:
+  env-files:
+    external: true
 
 networks:
   zendro:
