@@ -17,10 +17,8 @@ echo "==== Build zendro_graphql_server image ===="
 
 # Run the migration, which sets up keycloak for your system and copy the migration state to zendro_context volumne:
 docker-compose -f docker-compose-prod.yml \
-  run --rm zendro_graphql_server node -e 'require("./utils/migration").up()'
-
-docker-compose -f docker-compose-prod.yml \
-  run --rm zendro_graphql_server cp zendro_migration* ../zendro_context/migration_state
+  run --rm zendro_graphql_server bash -c \
+  'node -e "require(\"./utils/migration\").up()" && cp zendro_migration* ../zendro_context/migration_state'
 
 echo "==== Ran zendro migration and copied migration log files to zendro_context volume ===="
 
