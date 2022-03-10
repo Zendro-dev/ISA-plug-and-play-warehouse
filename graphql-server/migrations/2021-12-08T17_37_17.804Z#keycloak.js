@@ -68,29 +68,29 @@ module.exports = {
       //   `\nOAUTH2_CLIENT_SECRET=${KEYCLOAK_SPA_CLIENT_SECRET}\nOAUTH2_CLIENT_ID=${KEYCLOAK_SPA_CLIENT}`
       // );
       fs.appendFileSync(
-        path.resolve(__dirname, "../../env-files/.env.graphql"),
+        path.resolve(__dirname, "../../zendro_context/env/.env.graphql"),
         `\nOAUTH2_PUBLIC_KEY="${KEYCLOAK_PUBLIC_KEY}"\nOAUTH2_CLIENT_ID=${KEYCLOAK_GQL_CLIENT}`
       );
 
       // graphiql-auth
       fs.appendFileSync(
-        path.resolve(__dirname, "../../env-files/.env.development.graphiql"),
+        path.resolve(__dirname, "../../zendro_context/env/.env.development.graphiql"),
         `\nOAUTH2_CLIENT_SECRET=${KEYCLOAK_GIQL_CLIENT_SECRET}\nOAUTH2_CLIENT_ID=${KEYCLOAK_GIQL_CLIENT}`
       );
 
       fs.appendFileSync(
-        path.resolve(__dirname, "../../env-files/.env.production.graphiql"),
+        path.resolve(__dirname, "../../zendro_context/env/.env.production.graphiql"),
         `\nOAUTH2_CLIENT_SECRET=${KEYCLOAK_GIQL_CLIENT_SECRET}\nOAUTH2_CLIENT_ID=${KEYCLOAK_GIQL_CLIENT}`
       );
 
       // single-page-app
       fs.appendFileSync(
-        path.resolve(__dirname, "../../env-files/.env.development.spa"),
+        path.resolve(__dirname, "../../zendro_context/env/.env.development.spa"),
         `\nOAUTH2_CLIENT_SECRET=${KEYCLOAK_SPA_CLIENT_SECRET}\nOAUTH2_CLIENT_ID=${KEYCLOAK_SPA_CLIENT}`
       );
 
       fs.appendFileSync(
-        path.resolve(__dirname, "../../env-files/.env.production.spa"),
+        path.resolve(__dirname, "../../zendro_context/env/.env.production.spa"),
         `\nOAUTH2_CLIENT_SECRET=${KEYCLOAK_SPA_CLIENT_SECRET}\nOAUTH2_CLIENT_ID=${KEYCLOAK_SPA_CLIENT}`
       );
 

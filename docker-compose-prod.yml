@@ -66,9 +66,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - env-files:/usr/env-files/
-      - ./graphql-server/zendro_migration_log.json:/usr/graphql-server/zendro_migration_log.json
-      - ./graphql-server/zendro_migration_state.json:/usr/graphql-server/zendro_migration_state.json
+      - zendro_context:/usr/zendro_context/
     #volumes:
       #- ./graphql-server:/usr/graphql-server
       # override default default config with Starterpack config
@@ -87,7 +85,8 @@ services:
       - /bin/sh
       - -c
       - |
-        cp ../env-files/.env.graphql .env
+        cp ../zendro_context/env/.env.graphql .env
+        cp ../zendro_context/migration_state/* .
         # npm install
         # chmod u+x ./migrateDbAndStartServer.sh
         ./migrateDbAndStartServer.sh
@@ -114,13 +113,13 @@ services:
     # Install dependencies and start single-page-app-server in development
     # mode.
     volumes:
-      - env-files:/usr/env-files/
+      - zendro_context:/usr/zendro_context/
     command:
       - /bin/sh
       - -c
       - |
-        cp ../env-files/.env.development.spa .env.development
-        cp ../env-files/.env.production.spa .env.production
+        cp ../zendro_context/env/.env.development.spa .env.development
+        cp ../zendro_context/env/.env.production.spa .env.production
         # rm -rf .next
         # rm -rf out
         # yarn install
@@ -158,13 +157,13 @@ services:
     networks:
       zendro:
     volumes:
-      - env-files:/usr/env-files/
+      - zendro_context:/usr/zendro_context/
     command:
       - /bin/sh
       - -c
       - |
-        cp ../env-files/.env.development.graphiql .env.development
-        cp ../env-files/.env.production.graphiql .env.production
+        cp ../zendro_context/env/.env.development.graphiql .env.development
+        cp ../zendro_context/env/.env.production.graphiql .env.production
         # rm -rf .next
         # rm -rf out
         # yarn install
@@ -208,7 +207,7 @@ volumes:
   zendro_db_data:
   keycloak_pg_data:
   isa_files:
-  env-files:
+  zendro_context:
     external: true
 
 networks:
