@@ -42,7 +42,7 @@ if (!MAIL_ACCOUNT || !MAIL_HOST || !MAIL_PASSWORD || !MAIL_SERVICE) {
 
 // Graphiql endpoint
 const GRAPHIQL_REDIRECT_URI =
-  process.env.GRAPHIQL_REDIRECT_URI || "http://localhost:7000/*";
+  process.env.GRAPHIQL_REDIRECT_URI || "http://localhost:7070/*";
 // SPA enpoint
 const SPA_REDIRECT_URI =
   process.env.SPA_REDIRECT_URI || "http://localhost:8080/*";

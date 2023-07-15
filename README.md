@@ -43,7 +43,7 @@ This will fetch all the necessary docker images and install them as well as star
 
 ```
 graphql-server: http://localhost:3000/graphql
-graphiql: http://localhost:7000
+graphiql: http://localhost:7070
 single-page-app: http://localhost:8080
 keycloak: http://10.5.0.11:8081
 minio: http://localhost:9000
